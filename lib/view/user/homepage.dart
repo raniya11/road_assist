@@ -161,19 +161,39 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   SizedBox(height: 20,),
-                  AppText(text: "Recont Activities",size: 20,fw: FontWeight.w500,color: Colors.white,),
+                  AppText(text: "Recent Activities",size: 20,fw: FontWeight.w500,color: Colors.white,),
                   SizedBox(height: 10,),
-                  Container(
-                    height: 110,
-                    width: 110,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: cColor
-                    ),
-                    child: Column(
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
                       children: [
-                        Image(image: AssetImage("assets/img/heavy_vehicle.png"),height: 75,fit: BoxFit.cover,),
-                        AppText(text: "Heavy Vehicle",color: Colors.white,size: 14,fw: FontWeight.w500,),
+                        Container(
+                          height: 135,
+                          width: 180,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: textffColor
+                          ),
+                          child: Column(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: 20,),
+                        Container(
+                          height: 135,
+                          width: 180,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: textffColor
+                          ),
+                          child: Column(
+                            children: [
+
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
