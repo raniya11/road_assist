@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyA6AIAmijHbcte5nBe3u4XW1jyv3XNM1Kg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>227955055091</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.roadAssist.roadassist</string>
+	<key>PROJECT_ID</key>
+	<string>roadassist-894a8</string>
+	<key>STORAGE_BUCKET</key>
+	<string>roadassist-894a8.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:227955055091:ios:207515f5e6f6c362c19a86</string>
+</dict>
+</plist>
