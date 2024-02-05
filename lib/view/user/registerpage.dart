@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roadassist/view/common/loginpage.dart';
+import 'package:roadassist/view/user/homepage.dart';
 import 'package:roadassist/widgets/AppText.dart';
 import 'package:roadassist/widgets/colors.dart';
 
@@ -18,6 +19,19 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
   TextEditingController _cpassController=TextEditingController();
   TextEditingController _usernameController=TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool show=true;
+  bool showpass=true;
+
+
+  @override
+  void dispose() {
+
+    _emailController.dispose();
+    _passwordController.dispose();
+    _usernameController.dispose();
+    _cpassController.dispose();
+    super.dispose();
+  }
 
 
   @override
@@ -40,6 +54,12 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                   height: 40,
                 ),
                 TextFormField(
+                  validator: (value){
+                    if(value!.isEmpty){
+                      return "Field is mandatory";
+                    }
+                    return null;
+                  },
                   controller: _usernameController,
                   decoration: InputDecoration(
                     fillColor: textffColor,
@@ -64,6 +84,12 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                 ),
                 SizedBox(height: 20,),
                 TextFormField(
+                  validator: (value){
+                    if(value!.isEmpty || !value.contains('@gmail.com') || value.length <= 4){
+                      return "Field is mandatory";
+                    }
+                    return null;
+                  },
                   controller: _emailController,
                   decoration: InputDecoration(
                     fillColor:textffColor,
@@ -94,17 +120,27 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                   height: 20,
                 ),
                 TextFormField(
+                  validator: (value){
+                    if(value!.isEmpty || value!.length<6){
+                      return "Field is mandatory and required minimum of 6 characters";
+                    }
+                    return null;
+                  },
                   controller: _passwordController,
-                  obscureText: true,
+                  obscureText: show,
                   obscuringCharacter: "*",
                   decoration: InputDecoration(
                     hintText: "Password",
                     hintStyle: TextStyle(color: Colors.white),
                     fillColor: textffColor,
                     filled: true,
-                    suffixIcon: Icon(
-                      Icons.visibility,
-                      color: Colors.white,
+                    suffixIcon: IconButton(
+                      onPressed: (){
+                        setState(() {
+                          show=!show;
+                        });
+                      },
+                      icon: show == true ?Icon(Icons.visibility_off_outlined,color: Colors.white,): Icon(Icons.visibility_outlined,color: Colors.white,),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -126,18 +162,26 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                   height: 20,
                 ),
                 TextFormField(
+                  validator: (value){
+                    if(value!.isEmpty || value!.length<6){
+                      return "Field is mandatory and required minimum of 6 characters";
+                    }
+                    return null;
+                  },
                   controller: _cpassController,
-                  obscureText: true,
+                  obscureText: showpass,
                   obscuringCharacter: "*",
                   decoration: InputDecoration(
                     hintText: "Confirm Password",
                     hintStyle: TextStyle(color: Colors.white),
                     fillColor: textffColor,
                     filled: true,
-                    suffixIcon: Icon(
-                      Icons.visibility,
-                      color: Colors.white,
-                    ),
+                    suffixIcon: IconButton(onPressed: (){
+                      setState(() {
+                        showpass=!showpass;
+                      });
+                    },
+                      icon: showpass == true?Icon(Icons.visibility_off_outlined,color: Colors.white,): Icon(Icons.visibility_outlined,color: Colors.white,),),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(
@@ -160,10 +204,15 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                   width: 170,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => HomePage()));
+                      if(_passwordController.text==_cpassController.text){
+                        if(_formKey.currentState!.validate()){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()));
+                        }
+                      }
+
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.white),

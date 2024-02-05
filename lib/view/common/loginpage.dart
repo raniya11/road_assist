@@ -16,6 +16,14 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   final _loginkey = GlobalKey<FormState>();
+  bool show=true;
+
+  @override
+  void dispose() {
+     _emailController.dispose();
+     _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   validator: (value){
                     if(value!.length<=6){
-                      return "Password should be more than 5";
+                      return "Password should be minimum 6";
                     }
                   },
                   controller: _passwordController,
@@ -135,11 +143,12 @@ class _LoginPageState extends State<LoginPage> {
                   width: 170,
                   child: ElevatedButton(
                     onPressed: () {
-
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => BottomNavBarUser()));
+                      if(_loginkey.currentState!.validate()){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BottomNavBarUser()));
+                      }
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.white),
